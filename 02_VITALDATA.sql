@@ -3,11 +3,11 @@ USE CONTROLE_FINANCEIRO;
 BEGIN TRANSACTION;
 	--CUSTOMERS
 
-	INSERT INTO CUSTOMERS VALUES ( 'admin','f','admin@email.com',0,GETDATE(),'denis.silva',GETDATE(),'denis.silva');
+	INSERT INTO CUSTOMERS VALUES ( 'admin','f','admin@email.com',1,GETDATE(),'denis.silva',GETDATE(),'denis.silva');
 
 
 	--USER ADMIN
-	INSERT INTO USERS VALUES ( 'admin', 'admin','admin@email.com', 1, 1, GETDATE(), 'admin', GETDATE(), 'admin' );
+	INSERT INTO USERS VALUES ( 'devmaster', 'fafed9a7afec2868090490d7c77cb90c','admin@email.com', 1, 1, GETDATE(), 'devmaster', GETDATE(), 'devmaster' );
 
 	--BANKS
 
@@ -33,7 +33,7 @@ BEGIN TRANSACTION;
 
 	--SIGNATURES
 
-	INSERT INTO SIGNATURES VALUES ( '2025-03-10', 3, 1, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	INSERT INTO SIGNATURES VALUES ( '2022-03-10','2025-03-10', 3, 1, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
 
 	--PLAN_FEATURES
 	--id, plan_id, feature_id, active, created_at, created_by, updated_at, updated_by
@@ -69,3 +69,5 @@ BEGIN TRANSACTION;
 	INSERT INTO CATEGORIES VALUES ( 11, 'Educação', 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
 
 COMMIT TRANSACTION;
+
+
