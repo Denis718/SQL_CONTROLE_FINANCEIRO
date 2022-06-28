@@ -10,7 +10,7 @@ BEGIN TRANSACTION;
 
 	DROP TABLE currencies;
 
-	DROP TABLE operation_type;
+	DROP TABLE operationType;
 
 	DROP TABLE cards;
 
@@ -24,7 +24,7 @@ BEGIN TRANSACTION;
 
 	DROP TABLE plans;
 
-	DROP TABLE bank_accounts;
+	DROP TABLE bankAccounts;
 
 	DROP TABLE customers;
 
