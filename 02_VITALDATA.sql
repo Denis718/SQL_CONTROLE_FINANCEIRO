@@ -3,7 +3,7 @@ USE CONTROLE_FINANCEIRO;
 BEGIN TRANSACTION;
 	--CUSTOMERS
 
-	INSERT INTO customers ( name, type, email, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 'admin','f','admin@email.com',1,GETDATE(),'denis.silva',GETDATE(),'denis.silva');
+	INSERT INTO customers ( name, type, cpfCnpj, email, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 'admin','f','16541721000149','admin@email.com',1,GETDATE(),'denis.silva',GETDATE(),'denis.silva');
 
 	--USER ADMIN
 
@@ -15,12 +15,12 @@ BEGIN TRANSACTION;
 
 	--PLANS
 
-	INSERT INTO plans ( planId, description, duration, price, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 1, 'Free', 12, 0.00, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
-	INSERT INTO plans ( planId, description, duration, price, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 2, 'Basic', 24, 399.00, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
-	INSERT INTO plans ( planId, description, duration, price, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 3, 'Complete', 36, 799.00, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
-	INSERT INTO plans ( planId, description, duration, price, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 4, 'Enterprise', 12, 1599.00, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
-	INSERT INTO plans ( planId, description, duration, price, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 5, 'Custom', 6, 0.00, 0, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
-
+	INSERT INTO plans ( planId, description, duration, price, startDate, endDate, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 1, 'Free', 12, 0.00, '2020-01-25', null, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	INSERT INTO plans ( planId, description, duration, price, startDate, endDate, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 2, 'Basic', 24, 399.00, '2020-01-25', null, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	INSERT INTO plans ( planId, description, duration, price, startDate, endDate, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 3, 'Complete', 36, 799.00, '2020-01-25', null, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	INSERT INTO plans ( planId, description, duration, price, startDate, endDate, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 4, 'Enterprise', 12, 1599.00, '2020-01-25', null, 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	INSERT INTO plans ( planId, description, duration, price, startDate, endDate, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 5, 'Custom', 6, 0.00, '2020-01-25', '2020-10-15', 0, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
+	
 	--FEATURES
 
 	INSERT INTO features ( featureId, name, active, createdAt, createdBy, updatedAt, updatedBy ) VALUES ( 1, 'Financial control', 1, GETDATE(), 'denis.silva', GETDATE(), 'denis.silva' );
