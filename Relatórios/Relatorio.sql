@@ -55,4 +55,6 @@ WHERE operations.operationTypeId != 3
 GROUP BY operations.customerId, mes, ano;
 
 
-SELECT MONTH(operations.expectedDate) AS mes FROM operations
+SELECT operations.customerId, MONTH(operations.expectedDate) AS mes, YEAR(operations.expectedDate) AS ano, SUM(operations.expectedAmount) AS total FROM operations
+WHERE operations.operationTypeId != 3
+GROUP BY operations.customerId, operations.expectedDate
