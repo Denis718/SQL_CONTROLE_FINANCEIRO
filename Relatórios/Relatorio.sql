@@ -1,10 +1,14 @@
--- total de assinaturas por plano e tipo de cliente
-SELECT plans.description, count(signatures.planId) AS totalAssinaturas, customers.type
+-- subtotal e total de assinaturas por plano e tipo de cliente
+SELECT 
+    ISNULL(plans.description, 'Total') AS plans,
+    ISNULL(CONVERT(VARCHAR(10),customers.type), 'Subtotal') AS type,
+	count(signatures.planId) AS totalAssinaturas
 FROM plans LEFT JOIN signatures ON
-plans.planId = signatures.planId
-LEFT JOIN customers ON
-signatures.customerId = customers.customerId
-GROUP BY plans.description, customers.type;
+	plans.planId = signatures.planId
+	LEFT JOIN customers ON
+	signatures.customerId = customers.customerId
+GROUP BY 
+	ROLLUP(plans.description, customers.type);
 
 -- totais por descrição de operação
 SELECT operations.description, COUNT(*) AS total FROM operations
@@ -49,12 +53,23 @@ WHERE description = 'Salário'
 GROUP BY customers.type
 
 
--- total de despesas dos clientes por mês e ano
-SELECT operations.customerId, MONTH(operations.expectedDate) AS mes, YEAR(operations.expectedDate) AS ano, SUM(operations.expectedAmount) AS total FROM operations
-WHERE operations.operationTypeId != 3
-GROUP BY operations.customerId, mes, ano;
+-- total de despesas dos clientes por período mensal e ano
 
+DECLARE @receita TINYINT = 3
+DECLARE @mesInicial TINYINT = 2
+DECLARE @mesFinal TINYINT = 5
+DECLARE @ANO SMALLINT = 2023
 
-SELECT operations.customerId, MONTH(operations.expectedDate) AS mes, YEAR(operations.expectedDate) AS ano, SUM(operations.expectedAmount) AS total FROM operations
-WHERE operations.operationTypeId != 3
-GROUP BY operations.customerId, operations.expectedDate
+SELECT 
+	  ISNULL(customers.name, 'Total') AS customerId
+	, ISNULL(CONVERT(CHAR, MONTH(operations.expectedDate)), '') AS mes
+	, ISNULL(CONVERT(VARCHAR(10),YEAR(operations.expectedDate)), 'Subtotal') AS ano
+	, SUM(operations.expectedAmount) AS quantia
+FROM operations LEFT JOIN customers ON
+	operations.customerId = customers.customerId
+WHERE 
+	operations.operationTypeId != @receita AND
+	MONTH(operations.expectedDate) BETWEEN @mesInicial AND @mesFinal AND
+	YEAR(operations.expectedDate) = @ano
+GROUP BY 
+	ROLLUP(customers.name, operations.expectedDate)

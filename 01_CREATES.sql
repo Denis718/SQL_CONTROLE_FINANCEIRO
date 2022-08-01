@@ -1,4 +1,4 @@
-USE CONTROLE_FINANCEIRO;
+USE [Controle.Financeiro];
 
 CREATE TABLE banks (
 	bankCode INT PRIMARY KEY,
